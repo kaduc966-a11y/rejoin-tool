@@ -1,3 +1,13 @@
+# SieuThiRoblox Rejoin
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/2rWZxb3p27)
+
+Tham gia server Discord để được hỗ trợ và cập nhật mới nhất:
+
+👉 **[https://discord.gg/2rWZxb3p27](https://discord.gg/2rWZxb3p27)**
+
+---
+
 ## Setup (chạy trong Termux)
 ```
 . <(curl -sL https://raw.githubusercontent.com/kaduc966-a11y/rejoin-tool/main/setup.sh)
