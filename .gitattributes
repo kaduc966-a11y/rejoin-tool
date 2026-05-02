@@ -1,0 +1,11 @@
+# Auto detect text files and force LF line endings
+* text=auto eol=lf
+
+# Shell scripts must be LF
+*.sh text eol=lf
+
+# Binary files
+*.jar binary
+
+# Properties
+*.properties text eol=lf

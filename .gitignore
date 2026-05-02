@@ -1,0 +1,29 @@
+# Private repo - push tat ca lam backup
+# Chi ignore file rac, log, cache
+
+# IDE
+.idea/
+.vscode/
+
+# Python cache
+__pycache__/
+
+# JVM crash logs (qua nhieu, khong can)
+hs_err_pid*.log
+replay_pid*.log
+
+# ProGuard zip downloads (qua nang)
+proguard*.zip
+
+# Platform tools (qua nang, tu cai rieng)
+platform-tools/
+
+# ADB MCP (separate)
+adb-mcp-master/
+
+# Git
+.git/
+
+# Temp
+*.tmp
+tempCodeRunnerFile.jar
