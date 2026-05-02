@@ -1,10 +1,51 @@
-# SieuThiRoblox Rejoin
+# SieuThiRoblox Rejoin v2.1
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/2rWZxb3p27)
 
 Tham gia server Discord để được hỗ trợ và cập nhật mới nhất:
 
 👉 **[https://discord.gg/2rWZxb3p27](https://discord.gg/2rWZxb3p27)**
+
+---
+
+## ⭐ Features
+
+### Core
+- 🔄 **Auto Rejoin** — Tự động phát hiện kick/disconnect/crash và rejoin game
+- 🍪 **Login via Cookie** — Đăng nhập bằng `.ROBLOSECURITY` cookie
+- 📦 **Multi-package** — Hỗ trợ nhiều bản Roblox clone cùng lúc
+- 🔍 **Smart Detection** — Kết hợp Logcat + Lua heartbeat + API Presence để detect chính xác
+- 📊 **Webhook Discord** — Thông báo trạng thái rejoin realtime
+
+### 🆕 v2.1 — New Features
+- 🌐 **VIP Server Join** `[24]` — Join VIP server bằng share link hoặc code
+- 🎯 **Per-package PlaceID** `[25]` — Set PlaceID riêng cho từng package (game khác nhau)
+- 🐛 **Debug Status** `[26]` — Xem chi tiết PID, memory, uptime, kick signals, logcat
+- 📜 **Auto Execute All** `[18]` — Thêm/xóa script Delta cho tất cả packages cùng lúc
+- 🔒 **VIP Auto-Rejoin** — Tự động rejoin VIP server khi bị kick (per-package)
+
+### Các tính năng khác
+- 🚀 Fix Lag / Tối ưu hiệu suất
+- 🔄 Auto-change account
+- 📋 Export/Import cookie
+- 🔎 Scan & Auto-add Roblox packages
+- ⏱️ Tùy chỉnh timeout (NoGame/WhiteScreen)
+- 🛡️ Anti-VNG popup detect
+
+## 🔒 Anti-Reverse Engineering
+
+JAR được bảo vệ bởi **8 lớp chống dịch ngược**:
+
+| Protection | Mô tả |
+|---|---|
+| String Encryption | 4 methods: XOR+B64, Hex, Reversed+XOR, CharShift |
+| Anti-Debug | Detect TracerPid, JDWP debugger, env vars |
+| Anti-Dump | Background thread scan mỗi 3-7s |
+| Anti-Frida/Xposed | Scan `/proc/self/maps` |
+| JAR Integrity | SHA-256 self-hash verification |
+| Control Flow | Dead code blocks, opaque predicates |
+| ProGuard | Aggressive optimize + shrink + rename + repackage |
+| Random Names | Tên function thay đổi mỗi lần build |
 
 ---
 
