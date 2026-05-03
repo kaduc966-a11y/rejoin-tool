@@ -31,145 +31,75 @@ Tham gia server Discord để được hỗ trợ và cập nhật mới nhất:
 - 🔎 Scan & Auto-add Roblox packages
 - ⏱️ Tùy chỉnh timeout (NoGame/WhiteScreen)
 - 🛡️ Anti-VNG popup detect
+- 🖥️ Multi-Window / Freeform / Split Screen
 
 ---
 
-## 📋 Full Function List (70 functions)
+## 📋 Danh sách chức năng (70+)
 
 ### 🔧 System & Root
-| Function | Mô tả |
-|---|---|
-| `checkRoot()` | Kiểm tra root access |
-| `root(command)` | Chạy lệnh với quyền root (su -c) |
-| `rootOut(command)` | Chạy lệnh root và trả về output |
-| `shellQuote(value)` | Escape shell argument an toàn |
-| `ensureDependencies()` | Cài sqlite, curl, wget, grep, coreutils, procps |
-| `enableMultiWindow()` | Bật Multi-Window / Freeform / Split Screen |
+- Kiểm tra & sử dụng quyền root (su -c)
+- Tự động cài dependencies (sqlite, curl, wget, grep, procps)
+- Bật Multi-Window / Freeform / Split Screen
 
 ### 📦 Package Management
-| Function | Mô tả |
-|---|---|
-| `isRobloxPackage(pkg)` | Kiểm tra package có phải Roblox không |
-| `candidatePackages(props)` | Scan tất cả Roblox packages đã cài |
-| `selectedPackages(props)` | Lấy danh sách packages đang được chọn |
-| `pickOnePackage(props)` | Menu chọn 1 package cụ thể |
-| `openPackage(pkg)` | Mở app Roblox package |
+- Scan tất cả Roblox packages đã cài trên máy
+- Hỗ trợ multi-clone (com.roblox.client, com.roblox.client.2, v.v.)
+- Menu chọn package để thao tác
 
-### 🔍 Status Detection (3 mode)
-| Function | Mô tả |
-|---|---|
-| `checkStatus(pkg)` | Full check: logcat + file + cookie + API |
-| `checkStatusFast(pkg)` | Fast-path: chỉ check workspace activity |
-| `checkStatusBatched(pkg)` | Batched: gộp nhiều shell command 1 lần |
-| `printStatus(pkg)` | In status chi tiết ra terminal |
-| `colorStatus(status)` | Tô màu status string (running/stopped/crashed) |
-| `hasVngPopup(pkg)` | Detect VNG popup chặn game |
-| `hasWhiteScreenStuck(pkg)` | Detect white screen bị stuck |
-| `robloxFileLogSignal(pkg)` | Đọc file log signal kick |
-| `robloxDebugText(pkg)` | Lấy debug text từ Roblox |
+### 🔍 Status Detection (3 chế độ)
+- **Full check**: Logcat + File log + Cookie + API Presence
+- **Fast-path**: Chỉ check workspace activity (nhanh nhất)
+- **Batched**: Gộp nhiều shell command 1 lần (tối ưu)
+- Detect VNG popup, white screen stuck, crash signals
+- Inject Lua heartbeat để phát hiện kick realtime
 
 ### 📊 Data Extraction
-| Function | Mô tả |
-|---|---|
-| `extractFirst(text, patterns)` | Extract value đầu tiên match pattern |
-| `sessionCookieExists(pkg)` | Kiểm tra session cookie tồn tại |
-| `userIdFromLogs(text)` | Parse userId từ logcat |
-| `gameIdFromLogs(text)` | Parse gameId từ logcat |
-| `getUserIdFromCookieDb(pkg)` | Lấy userId từ cookie database |
-| `getUserIdFromSharedPrefs(pkg)` | Lấy userId từ SharedPreferences |
-| `getPlaceIdFromIntent(pkg)` | Lấy PlaceID từ intent activity |
-| `getRawCookieFromDb(pkg)` | Lấy raw .ROBLOSECURITY cookie |
-| `sha256Short(value)` | SHA-256 hash rút gọn |
+- Parse userId, gameId từ logcat
+- Đọc userId từ cookie database & SharedPreferences
+- Lấy PlaceID từ intent activity
+- Đọc raw .ROBLOSECURITY cookie
+- Session cookie verification
 
 ### 🍪 Cookie & Login
-| Function | Mô tả |
-|---|---|
-| `loginCookieTab(props)` | Menu login bằng cookie |
-| `insertRawCookie(pkg, cookie)` | Chèn cookie vào database |
-| `exportCookieRedacted(pkg)` | Export cookie (che bớt) |
-| `printCookieInfo(pkg)` | In thông tin cookie chi tiết |
-| `checkSelectedCookies(props)` | Kiểm tra cookie tất cả packages |
-| `fixCookieDb(pkg)` | Sửa/tạo lại cookie database |
-| `logoutRoblox(pkg)` | Đăng xuất Roblox |
+- Login bằng cookie (.ROBLOSECURITY)
+- Chèn/sửa cookie vào Roblox database
+- Export cookie (che bớt sensitive data)
+- Fix/tạo lại cookie database bị lỗi
+- Kiểm tra cookie tất cả packages cùng lúc
+- Đăng xuất Roblox an toàn
 
-### 🌐 Roblox API
-| Function | Mô tả |
-|---|---|
-| `fetchCsrfToken(cookie)` | Lấy X-CSRF-TOKEN từ Roblox API |
-| `fetchAuthTicket(cookie, csrf, placeId)` | Lấy auth ticket để join game |
-| `fetchPresenceType(userId)` | Kiểm tra trạng thái online (Presence API) |
-| `fetchUsername(userId)` | Lấy username từ userId |
-| `fetchDynamicValue(data, props)` | Fetch dynamic value từ server |
-| `sendWebhook(...)` | Gửi webhook Discord thông báo |
+### 🌐 Roblox API Integration
+- Lấy X-CSRF-TOKEN tự động
+- Fetch auth ticket để join game
+- Kiểm tra trạng thái online (Presence API)
+- Lấy username từ userId
+- Gửi webhook Discord thông báo realtime
 
 ### 🚀 Game Join & Rejoin
-| Function | Mô tả |
-|---|---|
-| `startPlace(...)` | Join game bằng deeplink/intent |
-| `startVipServer(pkg, shareCode, props)` | Join VIP server |
-| `verifyJoin(...)` | Xác nhận đã join thành công |
-| `parseVipLink(url)` | Parse share code từ VIP link |
-| `getPlaceIdForPackage(pkg, props)` | Lấy PlaceID cho package cụ thể |
-| `getVipCodeForPackage(pkg, props)` | Lấy VIP code cho package |
-| `autoRejoin(props)` | **Loop chính** — auto detect & rejoin |
-| `ensureLuaKickDetector(pkg)` | Inject Lua heartbeat detect kick |
+- Join game bằng deeplink/intent
+- Join VIP server bằng share link/code
+- PlaceID riêng cho từng package
+- VIP code riêng cho từng package
+- Xác nhận join thành công (verify loop)
+- **Auto Rejoin loop** — detect kick & rejoin tự động
 
 ### 📜 Delta Auto Execute
-| Function | Mô tả |
-|---|---|
-| `getDeltaAutoExecPath(pkg)` | Lấy path thư mục autoexec |
-| `setupAutoExec(pkg)` | Cài script vào autoexec |
-| `deleteAutoExec(pkg)` | Xóa script autoexec |
-| `autoExecTab(props)` | Menu quản lý autoexec tất cả packages |
+- Tự động setup script vào thư mục autoexec
+- Quản lý autoexec cho tất cả packages
+- Thêm/xóa script Delta dễ dàng
 
 ### 🎛️ Menu & UI
-| Function | Mô tả |
-|---|---|
-| `printMenu(props)` | In menu chính |
-| `joinVipServerMenu(props)` | Menu join VIP server |
-| `setPlaceIdPerPackageMenu(props)` | Menu set PlaceID per-package |
-| `debugStatusMenu(props)` | Menu debug status chi tiết |
-| `fixLagMenu(props)` | Menu fix lag |
+- Menu chính với đầy đủ options
+- Menu VIP Server join
+- Menu set PlaceID per-package
+- Menu debug status chi tiết
+- Menu fix lag & tối ưu
 
-### 🗂️ Config & Tabs
-| Function | Mô tả |
-|---|---|
-| `loadConfig()` | Load config từ file properties |
-| `saveConfig(props)` | Lưu config |
-| `parseCsv(value)` | Parse chuỗi CSV |
-| `parseTabLine(line)` | Parse dòng tab config |
-| `loadTabsFromFile(props)` | Load tabs từ file |
-| `checkAllTabs(props)` | Kiểm tra status tất cả tabs |
-
-### 🛠️ Utilities
-| Function | Mô tả |
-|---|---|
-| `prompt(label)` | Nhập input từ user |
-| `pause()` | Chờ user nhấn Enter |
-| `hasAny(text, words)` | Kiểm tra text chứa bất kỳ word nào |
-| `okMark(ok)` | Trả về ✓ hoặc ✗ |
-| `urlEncode(value)` | URL encode string |
-
----
-
-## 🔒 Obfuscation (14 Layers)
-
-| # | Layer | Type |
-|---|---|---|
-| 1 | String Pool Encryption (822 strings) | Source |
-| 2 | Interpolated String Encryption | Source |
-| 3 | Function Shuffle (Luraph-style) | Source |
-| 4 | Dead Code Injection | Source |
-| 5 | Opaque Predicates | Source |
-| 6 | Anti-Tamper Checks | Source |
-| 7 | Function Proxy Wrapping | Source |
-| 8 | Advanced Fake Functions + Variables | Source |
-| 9 | Control Flow Flattening (State Machine) | Source |
-| 10 | Anti-Debug (TracerPid/JDWP/env) | Runtime |
-| 11 | Anti-Dump/Frida/Xposed (/proc scan) | Runtime |
-| 12 | JAR Integrity Self-Hash (SHA-256) | Runtime |
-| 13 | ProGuard (shrink+optimize+rename+repackage) | Bytecode |
-| 14 | yGuard (2nd pass rename + overload) | Bytecode |
+### 🗂️ Config Management
+- Load/Save config từ file properties
+- Hỗ trợ multi-tab configuration
+- Kiểm tra status tất cả tabs
 
 ---
 
